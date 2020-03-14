@@ -3,4 +3,4 @@ project(Baekjun)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Baekjun src/path/to/source.cpp)
+add_executable(Baekjun src/01/1068.cpp)
