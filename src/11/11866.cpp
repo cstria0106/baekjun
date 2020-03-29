@@ -3,41 +3,31 @@
 
 using namespace std;
 
-template<typename T>
-void print_vector(vector<T> v) {
-    cout << "<";
-    for (int i = 0; i < v.size(); i++) {
-        cout << v[i];
-        if (i != v.size() - 1) cout << ", ";
-    }
-    cout << ">" << endl;
-}
-
 int main() {
     int n, k;
+    cin >> n >> k;
 
-    cin >> n;
-    cin >> k;
+    vector<int> v;
+    for (int i = 0; i < n; i++) v.push_back(i + 1);
 
-    vector<int> table;
-    table.reserve(n);
-
-    for (int i = 1; i <= n; i++) {
-        table.push_back(i);
+    vector<int> deleted;
+    int nth = 0;
+    int i = 0;
+    while (!v.empty()) {
+        nth += k - 1;
+        while (nth >= v.size()) nth -= v.size();
+        auto iter = v.begin() + nth;
+        deleted.push_back(*iter);
+        v.erase(iter);
     }
 
-    vector<int> removed;
-
-    int position = k - 1;
-
-    while (!table.empty()) {
-        print_vector(table);
-
-        int index = position % table.size();
-        removed.push_back(table[index]);
-        table.erase(table.begin() + index);
-        position += k - 1;
+    cout << "<";
+    for (size_t j = 0; j < deleted.size(); j++) {
+        cout << deleted[j];
+        if (j != deleted.size() - 1) {
+            cout << ", ";
+        }
     }
 
-    print_vector(removed);
+    cout << ">" << endl;
 }
