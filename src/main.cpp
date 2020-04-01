@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 #include "main.h"
-#include "03/3613.h" // 테스트 할 문제의 헤더파일을 include
 
 #define NUMBER 3613 // 문제 번호
 

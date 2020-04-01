@@ -10,5 +10,6 @@
 using namespace std;
 
 vector<string> get_cases(ifstream &in);
+void main_();
 
 #endif //BAEKJUN_MAIN_H

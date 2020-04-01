@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "../main.h"
 
 using namespace std;
 
@@ -58,7 +59,7 @@ string to_c_style(const string &s) {
     return new_str;
 }
 
-int main_() {
+void main_() {
     string s;
     cin >> s;
 
@@ -71,6 +72,4 @@ int main_() {
             cout << "Error!" << endl;
         }
     }
-
-    return 0;
 }
