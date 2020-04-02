@@ -1,7 +1,9 @@
+#include "../main.h"
 #include <iostream>
 
 using namespace std;
 
-int main() {
+int main_() {
     // Code here!
+    return 0;
 }

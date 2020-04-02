@@ -59,7 +59,7 @@ string to_c_style(const string &s) {
     return new_str;
 }
 
-void main_() {
+int main_() {
     string s;
     cin >> s;
 

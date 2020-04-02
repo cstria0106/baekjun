@@ -4,7 +4,7 @@
 #include <vector>
 #include "main.h"
 
-#define NUMBER 3613 // 문제 번호
+#define NUMBER 9251 // 문제 번호
 
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
@@ -50,6 +50,8 @@ int main() {
 
     vector<string> real_outputs;
 
+    int ret = 1;
+
     for (size_t i = 0; i < inputs.size(); i++) {
         string &input = inputs[i];
         string &expected = outputs[i];
@@ -60,7 +62,7 @@ int main() {
         stringstream output_string_stream;
         cout.rdbuf(output_string_stream.rdbuf()); // 출력 버퍼 교체
 #endif
-        main_();
+        ret = main_();
 #ifdef USE_TEST_CASE
 
         cout.rdbuf(std_out_buffer);
@@ -85,6 +87,8 @@ int main() {
         }
     }
 #endif
+
+    return ret;
 }
 
 vector<string> get_cases(ifstream &in) {
