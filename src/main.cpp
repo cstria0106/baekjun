@@ -9,8 +9,8 @@
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
 
-#define INPUT "test/input/" STR(NUMBER) ".txt"
-#define OUTPUT "test/output/" STR(NUMBER) ".txt"
+#define INPUT "../test/input/" STR(NUMBER) ".txt"
+#define OUTPUT "../test/output/" STR(NUMBER) ".txt"
 
 #define USE_TEST_CASE
 
