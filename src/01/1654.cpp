@@ -1,35 +1,46 @@
+#include "../main.h"
 #include <iostream>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
-int main() {
+int main_() {
     int k, n;
 
     cin >> k >> n;
 
-    int *lengths = new int[k];
-    int sum = 0;
+    vector<unsigned int> lengths(k);
+    unsigned int max_length = 0;
 
-    for (int i = 0; i < k; i++) {
-        cin >> lengths[i];
-        sum += lengths[i];
+    for (auto &length: lengths) {
+        cin >> length;
+        if (max_length < length) max_length = length;
     }
 
-    int average = (sum + 1) / n;
+    unsigned int right = max_length;
+    unsigned int left = 1;
+    unsigned int middle;
 
-    int count;
-    int length = average + 1;
+    while (true) {
+        middle = (right + left) / 2;
+        unsigned int count_a = 0;
+        unsigned int count_b = 0;
 
-    do {
-        length--;
-        count = 0;
-        for (int i = 0; i < k; i++) {
-            count += lengths[i] / length;
+        for (auto &length: lengths) {
+            count_a += length / middle;
+            count_b += length / (middle + 1);
         }
-    } while (count < n);
 
-    cout << length << endl;
+        if (count_b >= n) {
+            left = middle + 1;
+        } else if (count_a < n) {
+            right = middle - 1;
+        } else {
+            break;
+        }
+    }
 
-    delete[] lengths;
+    cout << middle << endl;
+
+    return 0;
 }

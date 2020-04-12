@@ -1,13 +1,10 @@
-/**
- * 미해결
- */
-
+#include "../main.h"
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-int main() {
+int main_() {
     int n;
     cin >> n;
 
@@ -24,6 +21,8 @@ int main() {
             root = (int) (root * a) % 10;
         }
 
-        cout << numbers[(b - 1) % numbers.size()] << endl;
+        int last = numbers[(b - 1) % numbers.size()];
+        cout << (last == 0 ? 10 : last) << endl;
     }
+    return 0;
 }
