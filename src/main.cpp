@@ -4,7 +4,7 @@
 #include <vector>
 #include "main.h"
 
-#define NUMBER 9251 // 문제 번호
+#define NUMBER 1028 // 문제 번호
 
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
@@ -17,6 +17,7 @@
 using namespace std;
 
 int main() {
+    int ret = 0;
 #ifdef USE_TEST_CASE
     // 표준 출력 버퍼 저장
     streambuf *std_out_buffer = std::cout.rdbuf();
@@ -49,8 +50,6 @@ int main() {
     set<int> wrong_set;
 
     vector<string> real_outputs;
-
-    int ret = 1;
 
     for (size_t i = 0; i < inputs.size(); i++) {
         string &input = inputs[i];
