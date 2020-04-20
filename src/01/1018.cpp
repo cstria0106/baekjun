@@ -1,66 +1,73 @@
-/**
- * 미해결
- */
-
 #include <iostream>
-#include <cstdio>
+#include <string>
+#include <vector>
+
+#define MIN(a, b) ((a) > (b) ? (b) : (a))
 
 using namespace std;
 
-int piece_to_repaint(char **board, int left_top_x, int left_top_y, int size) {
-    int bw = 0;
-    int wb = 0;
+int piece_to_repaint(const vector<string> &board, int x, int y) {
+    int wb_count = 0;
+    int bw_count = 0;
 
-    for (int y = 0; y < size; y++) {
-        for (int x = 0; x < size; x++) {
-            int real_x = x + left_top_x;
-            int real_y = y + left_top_y;
-            if (x % 2 == y % 2) {
-                if (board[real_y][real_x] == 'W') bw++;
-                if (board[real_y][real_x] == 'B') wb++;
+    for (int x_ = 0; x_ < 8; x_++) {
+        for (int y_ = 0; y_ < 8; y_++) {
+            int x__ = x + x_;
+            int y__ = y + y_;
+
+            if (y_ % 2 == 0) {
+                if (x_ % 2 == 0) {
+                    if (board[y__][x__] == 'W') {
+                        bw_count++;
+                    } else {
+                        wb_count++;
+                    }
+                } else {
+                    if (board[y__][x__] == 'W') {
+                        wb_count++;
+                    } else {
+                        bw_count++;
+                    }
+                }
             } else {
-                if (board[real_y][real_x] == 'W') wb++;
-                if (board[real_y][real_x] == 'B') bw++;
+                if (x_ % 2 == 0) {
+                    if (board[y__][x__] == 'W') {
+                        wb_count++;
+                    } else {
+                        bw_count++;
+                    }
+                } else {
+                    if (board[y__][x__] == 'W') {
+                        bw_count++;
+                    } else {
+                        wb_count++;
+                    }
+                }
             }
         }
     }
 
-    return bw > wb ? wb : bw;
+    return MIN(wb_count, bw_count);
 }
 
-int main() {
-    int w, h;
+int main_() {
+    int n, m;
+    cin >> n >> m;
+    vector<string> board(n);
 
-    cin >> h >> w;
-
-    char **board = new char *[h];
-    for (int i = 0; i < h; i++) {
-        board[i] = new char[h];
+    for (string &line: board) {
+        cin >> line;
     }
 
-    // clear buffer
-    getchar();
-
-    for (int y = 0; y < h; y++) {
-        scanf("%s", board[y]);
-    }
-
-    int min = 0;
-    for (int y = 0; y <= h - 8; y++) {
-        for (int x = 0; x <= w - 8; x++) {
-            int pieces = piece_to_repaint(board, x, y, 8);
-            if (x == 0 && y == 0) min = pieces;
-            else {
-                if (min > pieces) min = pieces;
-            }
+    int min = n * m;
+    for (int x = 0; x <= m - 8; x++) {
+        for (int y = 0; y <= n - 8; y++) {
+            int count = piece_to_repaint(board, x, y);
+            if (min > count) min = count;
         }
     }
 
-    for (int i = 0; i < h; i++) {
-        delete board[i];
-    }
+    cout << min << endl;
 
-    delete[] board;
-
-    cout << min;
+    return 0;
 }

@@ -5,7 +5,7 @@
 #include <chrono>
 #include "main.h"
 
-#define NUMBER 1699 // 문제 번호
+#define NUMBER 18111 // 문제 번호
 
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
@@ -13,7 +13,7 @@
 #define INPUT "../test/input/" STR(NUMBER) ".txt"
 #define OUTPUT "../test/output/" STR(NUMBER) ".txt"
 
-#define USE_TEST_CASE_
+#define USE_TEST_CASE
 
 using namespace std;
 
@@ -65,46 +65,46 @@ int main() {
 
         chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 #endif
-    ret = main_();
+        ret = main_();
 #ifdef USE_TEST_CASE
-    chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+        chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
-    times.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
+        times.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
 
-    cout.rdbuf(std_out_buffer);
-    string result = output_string_stream.str();
-    real_outputs.push_back(result);
+        cout.rdbuf(std_out_buffer);
+        string result = output_string_stream.str();
+        real_outputs.push_back(result);
 
-    string result_trimmed = result;
-    string expected_trimmed = expected;
-    ltrim(result_trimmed);
-    rtrim(result_trimmed);
-    ltrim(expected_trimmed);
-    rtrim(expected_trimmed);
+        string result_trimmed = result;
+        string expected_trimmed = expected;
+        ltrim(result_trimmed);
+        rtrim(result_trimmed);
+        ltrim(expected_trimmed);
+        rtrim(expected_trimmed);
 
-    if (result_trimmed == expected_trimmed) score++;
-    else wrong_set.insert(i);
-}
-
-int max_time = times[0];
-for (auto time: times) if (max_time < time) max_time = time;
-
-if (score == inputs.size()) {
-    cout << "You passed all test cases." << endl << "Max duration: " << max_time << "ms" << endl;
-} else {
-    cout << "You passed " << score << " cases out of " << inputs.size() << endl;
-    for (int i: wrong_set) {
-        cout << endl << "[Case #" << i << "]" << endl;
-        cout << "[Input]" << endl;
-        cout << inputs[i];
-        cout << "[Expected Output]" << endl;
-        cout << outputs[i];
-        cout << "[Output]" << endl;
-        cout << real_outputs[i];
-        cout << "[Time]" << endl;
-        cout << times[i] << "ms" << endl;
+        if (result_trimmed == expected_trimmed) score++;
+        else wrong_set.insert(i);
     }
-}
+
+    int max_time = times[0];
+    for (auto time: times) if (max_time < time) max_time = time;
+
+    if (score == inputs.size()) {
+        cout << "You passed all test cases." << endl << "Max duration: " << max_time << "ms" << endl;
+    } else {
+        cout << "You passed " << score << " cases out of " << inputs.size() << endl;
+        for (int i: wrong_set) {
+            cout << endl << "[Case #" << i << "]" << endl;
+            cout << "[Input]" << endl;
+            cout << inputs[i];
+            cout << "[Expected Output]" << endl;
+            cout << outputs[i];
+            cout << "[Output]" << endl;
+            cout << real_outputs[i];
+            cout << "[Time]" << endl;
+            cout << times[i] << "ms" << endl;
+        }
+    }
 #endif
 
     return ret;

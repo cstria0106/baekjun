@@ -1,39 +1,32 @@
-/**
- * 미해결
- */
-
-#include<string>
-#include<iostream>
-#include<algorithm>
-#include<vector>
 #include<cstdio>
+#include<vector>
+#include "../main.h"
 
 using namespace std;
 
 class User {
 public:
     int age;
-    string name;
+    char name[101];
 };
 
-int main() {
+int main_() {
     int n;
-    cin >> n;
+    scanf("%d", &n);
 
-    vector<User> users;
-    users.reserve(n);
+    vector<vector<User>> users(201);
 
     for (int i = 0; i < n; i++) {
-        User user;
-        cin >> user.age >> user.name;
-        users.push_back(user);
+        User user = {};
+        scanf("%d %s", &user.age, user.name);
+        users[user.age].push_back(user);
     }
 
-    sort(users.begin(), users.end(), [](const User &a, const User &b) -> bool {
-        return a.age < b.age;
-    });
-
-    for (const User &user: users) {
-        printf("%d %s\n", user.age, user.name.c_str());
+    for (int i = 1; i <= 200; i++) {
+        for (const User &user: users[i]) {
+            printf("%d %s\n", user.age, user.name);
+        }
     }
+
+    return 0;
 }

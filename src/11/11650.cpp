@@ -1,35 +1,25 @@
-/**
- * 미해결
- */
-
 #include<cstdio>
 #include<algorithm>
+#include<vector>
 
 using namespace std;
 
-typedef struct point {
+struct Point {
     int x, y;
+};
 
-    point() {
-        x = 0;
-        y = 0;
-    }
-} Point;
-
-int main() {
+int main_() {
     int n;
     scanf("%d", &n);
 
-    auto *points = new Point[n];
+    vector<Point> points(n);
 
-    for (int i = 0; i < n; i++) {
-        Point point;
+    for (Point &point: points) {
         scanf("%d %d", &point.x, &point.y);
-        points[i] = point;
     }
 
-    sort(points, points + n, [](const Point &a, const Point &b) -> bool {
-        if (a.x < b.x) return true;
+    sort(points.begin(), points.end(), [](const Point &a, const Point &b) -> bool {
+        if (a.x != b.x) return a.x < b.x;
         return a.y < b.y;
     });
 
@@ -37,5 +27,5 @@ int main() {
         printf("%d %d\n", points[i].x, points[i].y);
     }
 
-    delete[] points;
+    return 0;
 }
