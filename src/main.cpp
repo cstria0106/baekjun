@@ -5,7 +5,11 @@
 #include <chrono>
 #include "main.h"
 
+<<<<<<< HEAD
 #define NUMBER 18111 // 문제 번호
+=======
+#define NUMBER 1028 // 문제 번호
+>>>>>>> bab3b89e30b089f2a15817eab3aae6ac074c4199
 
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
@@ -18,6 +22,7 @@
 using namespace std;
 
 int main() {
+    int ret = 0;
 #ifdef USE_TEST_CASE
     // 표준 출력 버퍼 저장
     streambuf *std_out_buffer = std::cout.rdbuf();
@@ -49,10 +54,14 @@ int main() {
     int score = 0;
     set<int> wrong_set;
     vector<string> real_outputs;
+<<<<<<< HEAD
     vector<int> times;
 #endif
     int ret = 0;
 #ifdef USE_TEST_CASE
+=======
+
+>>>>>>> bab3b89e30b089f2a15817eab3aae6ac074c4199
     for (size_t i = 0; i < inputs.size(); i++) {
         string &input = inputs[i];
         string &expected = outputs[i];

@@ -3,5 +3,4 @@ project(Baekjun)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Baekjun src/short_code/stalin_sort.cpp)
-# src/main.cpp src/main.h
+add_executable(Baekjun src/main.cpp src/main.h src/01/1028.cpp)

@@ -2,52 +2,42 @@
 
 using namespace std;
 
-unsigned long long array[40] = {0};
-int a = 0;
-int b = 0;
+struct Pair {
+    int zero;
+    int one;
+};
 
-int pibonacci(int n) {
-    if (n == 0) {
-        a++;
-        return 0;
-    } else if (n == 1) {
-        b++;
-        return 1;
-    } else {
-        return pibonacci(n - 1) + pibonacci(n - 2);
-    }
+Pair *pairs;
+bool *has_pair;
+
+Pair fibonacci(int n) {
+    if (n == 0) return {1, 0};
+    if (n == 1) return {0, 1};
+    if (has_pair[n]) return pairs[n];
+    Pair pair_before = fibonacci(n - 1);
+    pairs[n] = {pair_before.one, pair_before.one + pair_before.zero};
+    has_pair[n] = true;
+    return pairs[n];
 }
 
-unsigned long long fibonacci(int n) {
-    if (n == 0) {
-        a++;
-        return 0;
-    }
-    if (n == 1) {
-        b++;
-        return 1;
-    }
-    if (n - 1 == 0 || n - 2 == 0) a++;
-    if (n - 1 == 1 || n - 2 == 1) b++;
-    if (array[n] != 0) {
-        return array[n];
-    }
-    array[n] = fibonacci(n - 1) + fibonacci(n - 2);
-    return array[n];
-}
-
-int main() {
+int main_() {
     int t;
     cin >> t;
 
     for (int i = 0; i < t; i++) {
         int n;
         cin >> n;
+        pairs = new Pair[n + 1];
+        has_pair = new bool[n + 1];
+        for (int j = 0; j < n + 1; j++) has_pair[j] = false;
 
-        a = 0;
-        b = 0;
+        Pair pair = fibonacci(n);
+        cout << pair.zero << " " << pair.one << endl;
 
-        fibonacci(n);
-        cout << a << " " << b << endl;
+        delete[] pairs;
+        delete[] has_pair;
     }
+
+
+    return 0;
 }
